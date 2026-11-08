@@ -29,10 +29,6 @@
   --bg:#ffffff; --card:#ffffff; --fg:#1c1c1a; --muted:#64635e; --line:#e6e4dd;
   --accent:#1f5fbf; --accent-soft:#e8effb; --band1:#1f5fbf; --band2:#5b3cc4; --good:#1f7a4d;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#121211; --card:#1b1b1a; --fg:#ecebe6; --muted:#a3a29c; --line:#2f2e2b;
-  --accent:#7fb0ef; --accent-soft:#1d2a3d; --band1:#1d3d73; --band2:#3a2a73; --good:#5cc28f;
-}}
 :root[data-theme="dark"]{--bg:#121211;--card:#1b1b1a;--fg:#ecebe6;--muted:#a3a29c;--line:#2f2e2b;--accent:#7fb0ef;--accent-soft:#1d2a3d;--band1:#1d3d73;--band2:#3a2a73;--good:#5cc28f}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -65,7 +61,6 @@ h2::after{content:"";flex:1;height:1px;background:var(--line)}
 .ptitle{font-size:18.5px;font-weight:700;line-height:1.35}
 .authors{color:var(--muted);margin:4px 0}.me{color:var(--fg);font-weight:600;text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px}
 .venue{display:inline-block;font:600 12px system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;border-radius:6px;padding:1px 8px;background:#fff4e0;color:#8a5a00;margin-right:6px}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .venue{background:#3a2d12;color:#e7b86a}}
 :root[data-theme="dark"] .venue{background:#3a2d12;color:#e7b86a}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
 .chip{font:500 13px system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;border:1px solid var(--line);border-radius:7px;padding:2px 9px;color:var(--muted)}
@@ -556,7 +551,7 @@ h3.sub{font-size:16px;margin:18px 0 6px}
 var r=document.getElementById('req');if(r)r.href='mailto:'+m+'?subject='+encodeURIComponent('CrossTrust manuscript');})();
 // light/dark switch: starts from the system setting, remembers the visitor's choice
 (function(){var b=document.getElementById('theme');if(!b)return;var r=document.documentElement;
-b.addEventListener('click',function(){var cur=r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+b.addEventListener('click',function(){var cur=r.getAttribute('data-theme')||'light';
 var nx=cur==='dark'?'light':'dark';r.setAttribute('data-theme',nx);try{localStorage.setItem('theme',nx);}catch(e){}});})();
 // highlight the section being read in the top menu
 (function(){var links={};document.querySelectorAll('.topbar nav a').forEach(function(a){links[a.getAttribute('href').slice(1)]=a;});
