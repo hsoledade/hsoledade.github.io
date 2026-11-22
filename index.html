@@ -38,6 +38,12 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 main{max-width:820px;margin:-90px auto 0;padding:0 16px 48px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 30px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
 header.card{display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+.photo-btn{all:unset;cursor:zoom-in;display:inline-block;border-radius:50%}
+.photo-btn:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.photo-dlg{border:none;padding:0;background:transparent;max-width:min(92vw,560px);max-height:92vh;overflow:visible}
+.photo-dlg::backdrop{background:rgba(0,0,0,.78)}
+.photo-dlg img{display:block;width:100%;height:auto;max-height:92vh;object-fit:contain;border-radius:12px}
+.dlg-close{position:absolute;top:-14px;right:-14px;width:34px;height:34px;border-radius:50%;border:none;background:#fff;color:#1c1c1a;font:600 22px/34px system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.3)}
 .photo{width:150px;height:150px;border-radius:50%;object-fit:cover;border:4px solid var(--card);box-shadow:0 0 0 2px var(--line);background:var(--accent-soft)}
 h1{font-size:32px;line-height:1.15;margin:0 0 4px;font-weight:700}
 .role{color:var(--muted);margin:0 0 10px;font-size:16px}
@@ -114,7 +120,7 @@ footer{margin-top:44px;color:var(--muted);font:13.5px system-ui,-apple-system,"S
 .topbar nav{position:static;margin:0;padding:0;border:0;background:none;backdrop-filter:none;gap:20px}
 main.layout{max-width:1180px;margin:0 auto;padding:40px 24px 48px;display:grid;grid-template-columns:250px minmax(0,1fr);gap:56px}
 aside.profile{position:sticky;top:90px;align-self:start}
-.profile .photo{width:200px;height:200px}
+.profile .photo{width:240px;height:240px}
 .profile h1{font-size:22px;margin:16px 0 6px}
 .profile .role{font-size:14.5px;line-height:1.5}
 .profile .badge{font-size:12.5px}
@@ -133,7 +139,7 @@ ul.plinks svg{width:16px;height:16px;flex:none}
 @media (max-width:900px){
   main.layout{grid-template-columns:1fr;gap:24px;padding-top:24px}
   aside.profile{position:static;text-align:center}
-  .profile .photo{width:160px;height:160px}
+  .profile .photo{width:200px;height:200px}
   ul.plinks{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px}
   ul.plinks li{margin:4px 0}
   .tb-in{gap:16px}.tb-name{display:none}
@@ -238,7 +244,8 @@ h3.sub{font-size:16px;margin:18px 0 6px}
 <div class="topbar"><div class="tb-in"><a class="tb-name" href="#">Hazael S. A. Jumonji</a><nav><a href="#about">About</a><a href="#research">Research</a><a href="#projects">Projects</a><a href="#updates" class="nav-opt">Updates</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#teaching">Service</a><a href="#awards">Awards</a><a href="#scholarships" class="nav-opt">Scholarships</a><a href="#beyond" class="nav-opt">Personal</a></nav><a class="tb-cv" href="cv.pdf">CV (PDF)</a><button id="theme" class="theme" type="button" aria-label="Switch light/dark theme" title="Switch light/dark theme">◐</button></div></div>
 <main class="layout">
 <aside class="profile">
-  <img class="photo" src="photo.jpg" alt="Photo of Hazael S. A. Jumonji" onerror="this.style.display='none'">
+  <button type="button" class="photo-btn" id="photoBtn" aria-label="Open full photo" title="Open full photo"><img class="photo" src="photo.jpg" alt="Photo of Hazael S. A. Jumonji" onerror="this.style.display='none'"></button>
+  <dialog id="photoDlg" class="photo-dlg" aria-label="Photo of Hazael S. A. Jumonji"><img src="photo_full.jpg" alt="Hazael S. A. Jumonji in front of a tree with red autumn leaves" loading="lazy"><button type="button" class="dlg-close" aria-label="Close">×</button></dialog>
   <h1>Hazael S. A. Jumonji</h1>
   <p class="role">M.Sc. student, Prof. Yue Wu's group, School of Computer Science, Shanghai Jiao Tong University<br>Diplôme d'Ingénieur student (Master's), ENSTA Paris – IP Paris</p>
   <span class="badge">Seeking a Ph.D. position · Fall 2027</span>
@@ -565,5 +572,6 @@ function set(c){els.forEach(function(e){e.classList.toggle('on',e.dataset.c===c)
 els.forEach(function(e){['mouseenter','focus','click'].forEach(function(ev){e.addEventListener(ev,function(){set(e.dataset.c);});});
 e.addEventListener('mouseleave',function(){set(null);});e.addEventListener('blur',function(){set(null);});});})();
 </script>
+<script>(function(){var b=document.getElementById("photoBtn"),d=document.getElementById("photoDlg");if(!b||!d||!d.showModal)return;b.addEventListener("click",function(){d.showModal();});d.addEventListener("click",function(e){if(e.target===d||e.target.classList.contains("dlg-close"))d.close();});})();</script>
 </body>
 </html>
